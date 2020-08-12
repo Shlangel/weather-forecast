@@ -10,6 +10,7 @@ import { IForecast } from '../../interfaces/forecast.interface';
 export class WeatherComponent implements OnInit {
 
   public forecast: IForecast;
+  public system = 'fahrenheit';
 
   constructor(private weatherService: WeatherService) { }
 
@@ -24,6 +25,14 @@ export class WeatherComponent implements OnInit {
         this.weatherService.directionDetermination(`${response.wind.deg}`).subscribe(deg => this.forecast.wind.deg = deg);
       }
       );
+  }
+
+  public conversion(system: string): void {
+    if (system === this.system) {
+      return;
+    }
+    system === 'celsius' ? this.forecast.main.temp *= 33.8 : system === 'fahrenheit' ? this.forecast.main.temp /= 33.8 : null;
+    this.system = system;
   }
 
 }
