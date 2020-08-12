@@ -20,4 +20,5 @@ export class WeatherService {
       : deg > '270' && deg < '360' ? 'northwest' : null;
     return of(direction);
   }
+
 }

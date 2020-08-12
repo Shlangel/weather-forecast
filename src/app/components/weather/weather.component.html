@@ -1,5 +1,11 @@
 <div *ngIf="forecast">
   <div>
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="bold">C</mat-button-toggle>
+      <mat-button-toggle value="italic">F</mat-button-toggle>
+    </mat-button-toggle-group>
+</div>
+  <div>
     {{forecast.weather[0].main}}
   </div>
   <div>
