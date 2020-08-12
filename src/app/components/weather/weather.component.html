@@ -1,0 +1,23 @@
+<div *ngIf="forecast">
+  <div>
+    {{forecast.weather[0].main}}
+  </div>
+  <div>
+    {{forecast.weather[0].description}}
+  </div>
+  <div>
+    {{forecast.main.temp}}
+  </div>
+  <div>
+    {{forecast.main.pressure}}
+  </div>
+  <div>
+    {{forecast.main.humidity}}
+  </div>
+  <div>
+    {{forecast.wind.speed}} m/s, {{forecast.wind.deg}}
+  </div>
+  <div>
+    {{forecast.clouds.all}}%
+  </div>
+</div>
