@@ -15,6 +15,7 @@ export class WeatherComponent implements OnInit {
   public system = 'fahrenheit';
   public temp: number;
   public currentCity = 'Krasnodar';
+  public icon;
 
   constructor(private weatherService: WeatherService) { }
 
@@ -49,5 +50,9 @@ export class WeatherComponent implements OnInit {
     this.temp = system === 'celsius' ? Math.round(((this.forecast.main.temp - 32) * 5 / 9 * 10) / 10)
       : system === 'fahrenheit' ? Math.round((((this.temp * 9 / 5) + 32) * 10) / 10) : null;
     this.system = system;
+  }
+
+  public iconSelect(icon: string): void {
+    
   }
 }

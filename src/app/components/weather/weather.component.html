@@ -1,55 +1,51 @@
 <div *ngIf="forecast" class="body">
-  
+
   <div class="top-part">
-    <form class="example-form">
+    <!-- <form class="example-form">
       <mat-form-field class="example-full-width">
-        <input type="text"
-               placeholder="Pick one"
-               aria-label="Number"
-               matInput
-               [formControl]="myControl"
-               [matAutocomplete]="auto">
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
+          [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
           <mat-option *ngFor="let city of cities | async" [value]="option">
             {{city}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-    </form>
-  
-<div>
-  °
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle (click)="conversion('celsius')">C</mat-button-toggle>
-      <mat-button-toggle checked="true" (click)="conversion('fahrenheit')">F</mat-button-toggle>
-    </mat-button-toggle-group>
+    </form> -->
+
+    <div class="toggle">
+      <span>°</span>
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+        <mat-button-toggle (click)="conversion('celsius')">C</mat-button-toggle>
+        <mat-button-toggle checked="true" (click)="conversion('fahrenheit')">F</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
   </div>
-</div>
-  
-<div class="center-part">
-  <div class="temp">
-    {{temp}}°
+
+  <div class="center-part">
+    <div class="temp">
+      {{temp}}°
+    </div>
+    <div class="description">
+      {{forecast.weather[0].description}}
+    </div>
   </div>
-  <div>
-    {{forecast.weather[0].description}}
-  </div>
-</div>
   <div class="bottom-part">
-  <div>
-    <p>Wind</p>
-    {{forecast.wind.speed}} m/s, {{forecast.wind.deg}}
+    <div>
+      <p>Wind</p>
+      <span>{{forecast.wind.speed}}</span> m/s, {{forecast.wind.deg}}
+    </div>
+    <div>
+      <p>Pressure</p>
+      <span>{{forecast.main.pressure}}</span> mmHg
+    </div>
+    <div>
+      <p>Humidity</p>
+      <span>{{forecast.main.humidity}}</span>%
+    </div>
+    <div>
+      <p>Chance of rain</p>
+      <span>{{forecast.clouds.all}}</span>%
+    </div>
   </div>
-  <div>
-    <p>Pressure</p>
-    {{forecast.main.pressure}} mmHg
-  </div>
-  <div>
-    <p>Humidity</p>
-    {{forecast.main.humidity}}%
-  </div>
-  <div>
-    <p>Chance of rain</p>
-    {{forecast.clouds.all}}%
-  </div>
-</div>
 </div>

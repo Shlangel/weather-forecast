@@ -1,8 +1,15 @@
 .temp {
-  font-size: 9em;
+  font-size: 180px;
+  font-family: "Proxima Nova Condensed";
   font-weight: 100;
 }
-
+.description {
+  font-size: 25px;
+}
+.toggle span{
+  font-size: 18px;
+  opacity: 39.85%;
+}
 .top-part {
   margin-top: 70px;
   margin-left: 200px;
@@ -17,7 +24,19 @@
   align-items: center;
 }
 .bottom-part {
-  margin-top: 14%;
+  margin-top: 13%;
   display: flex;
   justify-content: space-around;
+  font-size: 25px;
+}
+.bottom-part p {
+  font-size: 18px;
+  opacity: 0.6;
+}
+.bottom-part span {
+  font-weight: bold;
+}
+mat-button-toggle {
+  background: inherit;
+  font-size: 18px;
 }
