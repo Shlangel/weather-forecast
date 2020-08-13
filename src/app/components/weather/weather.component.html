@@ -1,13 +1,21 @@
 <div *ngIf="forecast" class="body">
   
   <div class="top-part">
-  <mat-form-field appearance="fill">
-    <mat-label>{{currentCity}}</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let city of cities" (click)="getForecast(city)">
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text"
+               placeholder="Pick one"
+               aria-label="Number"
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let city of cities | async" [value]="option">
+            {{city}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
   
 <div>
   °
