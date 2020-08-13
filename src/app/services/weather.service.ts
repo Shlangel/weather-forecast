@@ -29,13 +29,13 @@ export class WeatherService {
 
   public directionDetermination(deg: string): Observable<string> {
     const direction = deg === '0' || '360' ? 'nothern'
-      : deg > '0' && deg < '90' ? 'northeast'
-        : deg === '90' ? 'eastern'
-          : deg > '90' && deg < '180' ? 'southeast'
-            : deg === '180' ? 'south'
-              : deg > '180' && deg < '270' ? 'southwest'
-                : deg === '270' ? 'west'
-                  : deg > '270' && deg < '360' ? 'northwest' : null;
+                    : deg > '0' && deg < '90' ? 'northeast'
+                    : deg === '90' ? 'eastern'
+                    : deg > '90' && deg < '180' ? 'southeast'
+                    : deg === '180' ? 'south'
+                    : deg > '180' && deg < '270' ? 'southwest'
+                    : deg === '270' ? 'west'
+                    : deg > '270' && deg < '360' ? 'northwest' : null;
     return of(direction);
   }
 

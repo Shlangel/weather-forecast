@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { IForecast } from '../../interfaces/forecast.interface';
 import { ICity } from '../../interfaces/city.interface';
-import { FormControl } from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-weather',
@@ -18,18 +15,12 @@ export class WeatherComponent implements OnInit {
   public system = 'fahrenheit';
   public temp: number;
   public currentCity = 'Krasnodar';
-  public searchControl = new FormControl();
-  public filteredCities: Observable<string[]>;
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
     this.getForecast('Krasnodar');
     this.getCities();
-    this.filteredCities = this.searchControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
   }
 
   public getForecast(city?: string): void {
@@ -58,11 +49,5 @@ export class WeatherComponent implements OnInit {
     this.temp = system === 'celsius' ? Math.round(((this.forecast.main.temp - 32) * 5 / 9 * 10) / 10)
       : system === 'fahrenheit' ? Math.round((((this.temp * 9 / 5) + 32) * 10) / 10) : null;
     this.system = system;
-  }
-
-  private _filter(value: string): ICity[] {
-    const filterValue = value.toLowerCase();
-
-    return this.cities.filter(city => city.name.toLowerCase().indexOf(filterValue) === 0);
   }
 }
