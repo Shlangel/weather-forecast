@@ -11,7 +11,7 @@ export class WeatherService {
   constructor( private http: HttpClient ) { }
 
   public getForecast(cityName: string): Observable<IForecast> {
-    return this.http.get<IForecast>(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=e925447cbf57c1cecdeb3e95cc3cb78a`)
+    return this.http.get<IForecast>(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=e925447cbf57c1cecdeb3e95cc3cb78a`);
   }
 
   public directionDetermination(deg: string): Observable<string> {

@@ -1,30 +1,47 @@
-<div *ngIf="forecast">
+<div *ngIf="forecast" class="body">
+  
+  <div class="top-part">
+  <mat-form-field appearance="fill">
+    <mat-label>{{currentCity}}</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let city of cities" (click)="getForecast(city)">
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
 <div>
   °
     <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle value="bold" (click)="conversion(celsius)">C</mat-button-toggle>
-      <mat-button-toggle value="italic" checked="true" (click)="conversion(fahrenheit)">F</mat-button-toggle>
+      <mat-button-toggle (click)="conversion('celsius')">C</mat-button-toggle>
+      <mat-button-toggle checked="true" (click)="conversion('fahrenheit')">F</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
-  <div>
-    {{forecast.weather[0].main}}
+</div>
+  
+<div class="center-part">
+  <div class="temp">
+    {{temp}}°
   </div>
   <div>
     {{forecast.weather[0].description}}
   </div>
+</div>
+  <div class="bottom-part">
   <div>
-    {{forecast.main.temp}}
-  </div>
-  <div>
-    {{forecast.main.pressure}}
-  </div>
-  <div>
-    {{forecast.main.humidity}}
-  </div>
-  <div>
+    <p>Wind</p>
     {{forecast.wind.speed}} m/s, {{forecast.wind.deg}}
   </div>
   <div>
+    <p>Pressure</p>
+    {{forecast.main.pressure}} mmHg
+  </div>
+  <div>
+    <p>Humidity</p>
+    {{forecast.main.humidity}}%
+  </div>
+  <div>
+    <p>Chance of rain</p>
     {{forecast.clouds.all}}%
   </div>
+</div>
 </div>
