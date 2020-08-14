@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 90%; background-color: #1086FF; color: white; }
+html, body { height: 90%; background-color: #498CEC; color: white; }
 body { margin: 0; font-family: "Proxima Nova", "Helvetica Neue", sans-serif; }
-
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  padding: 0 24px !important;
+}
 html, body { height: 90%; }
 body { margin: 0; font-family: "Proxima Nova", "Helvetica Neue", sans-serif; }

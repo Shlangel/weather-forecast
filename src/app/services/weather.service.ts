@@ -14,7 +14,7 @@ export class WeatherService {
 
   constructor(
     private http: HttpClient
-    ) { }
+  ) { }
 
   public getForecast(cityName: string): Observable<IForecast> {
     return this.http.get<IForecast>(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=e925447cbf57c1cecdeb3e95cc3cb78a`);
@@ -29,14 +29,29 @@ export class WeatherService {
 
   public directionDetermination(deg: string): Observable<string> {
     const direction = deg === '0' || '360' ? 'nothern'
-                    : deg > '0' && deg < '90' ? 'northeast'
-                    : deg === '90' ? 'eastern'
-                    : deg > '90' && deg < '180' ? 'southeast'
-                    : deg === '180' ? 'south'
-                    : deg > '180' && deg < '270' ? 'southwest'
-                    : deg === '270' ? 'west'
-                    : deg > '270' && deg < '360' ? 'northwest' : null;
+      : deg > '0' && deg < '90' ? 'northeast'
+        : deg === '90' ? 'eastern'
+          : deg > '90' && deg < '180' ? 'southeast'
+            : deg === '180' ? 'south'
+              : deg > '180' && deg < '270' ? 'southwest'
+                : deg === '270' ? 'west'
+                  : deg > '270' && deg < '360' ? 'northwest' : null;
     return of(direction);
+  }
+
+  public iconSelect(icon: string): Observable<string> {
+    switch (icon) {
+      case 'Clear':
+        return of(icon = '../../../assets/icons/sun.svg');
+      case 'Clouds':
+        return of(icon = '../../../assets/icons/clouds.svg');
+      case 'Rain':
+        return of(icon = '../../../assets/icons/rain.svg');
+      case 'Clear':
+        return of(icon = '../../../assets/icons/sun.svg');
+      case 'Clear':
+        return of(icon = '../../../assets/icons/sun.svg');
+    }
   }
 
 }

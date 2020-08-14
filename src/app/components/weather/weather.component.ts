@@ -15,7 +15,6 @@ export class WeatherComponent implements OnInit {
   public system = 'fahrenheit';
   public temp: number;
   public currentCity = 'Krasnodar';
-  public icon;
 
   constructor(private weatherService: WeatherService) { }
 
@@ -28,6 +27,7 @@ export class WeatherComponent implements OnInit {
     this.weatherService.getForecast(city)
       .subscribe((response: IForecast) => {
         this.forecast = response;
+        this.iconSelect(response.weather[0].main);
         this.forecast.main.temp = (response.main.temp - 273.15) * 9 / 5 + 32;
         this.temp = Math.round(this.forecast.main.temp * 10 / 10);
         this.weatherService.directionDetermination(`${response.wind.deg}`).subscribe(deg => this.forecast.wind.deg = deg);
@@ -39,7 +39,6 @@ export class WeatherComponent implements OnInit {
     this.weatherService.getCities()
       .subscribe((response: ICity[]) => {
         this.cities = response;
-        console.log(response);
       });
   }
 
@@ -48,11 +47,14 @@ export class WeatherComponent implements OnInit {
       return;
     }
     this.temp = system === 'celsius' ? Math.round(((this.forecast.main.temp - 32) * 5 / 9 * 10) / 10)
-      : system === 'fahrenheit' ? Math.round((((this.temp * 9 / 5) + 32) * 10) / 10) : null;
+      : system === 'fahrenheit' ? Math.round((this.forecast.main.temp * 10) / 10) : null;
     this.system = system;
   }
 
   public iconSelect(icon: string): void {
-    
+    this.weatherService.iconSelect(icon)
+      .subscribe(response =>
+        this.forecast.weather[0].icon = response
+      );
   }
 }
