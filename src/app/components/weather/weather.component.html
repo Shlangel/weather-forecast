@@ -1,21 +1,18 @@
 <div *ngIf="forecast" class="body">
 
   <div class="top-part">
-    <!-- <form class="example-form">
-      <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
-          [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let city of cities | async" [value]="option">
-            {{city}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form> -->
+    <div>
+    <input type="text" [formControl]="search" (blur)="disableControl()">
+    <button (click)="enableControl()">Change city</button>
+    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cursor-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+    </svg>
+    <button (click)="getLocation()">My location</button>
+  </div>
 
     <div class="toggle">
       <span>°</span>
-      <mat-button-toggle-group name="fontStyle" aria-label="Font Style" value="F">
+      <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [value]="currentSystem">
         <mat-button-toggle (click)="conversion('celsius')" value="C" class="left-btn">C</mat-button-toggle>
         <mat-button-toggle (click)="conversion('fahrenheit')" value="F" class="right-btn">F</mat-button-toggle>
       </mat-button-toggle-group>
